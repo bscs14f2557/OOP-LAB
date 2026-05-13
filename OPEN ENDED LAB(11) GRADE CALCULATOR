@@ -1,0 +1,120 @@
+package asmaopenendedlab;
+
+import javax.swing.*;
+import java.awt.event.*;
+
+public class Gradecalc extends JFrame implements ActionListener {
+
+    JTextField m1, m2, m3, m4, m5, m6;
+    JTextField g1, g2, g3, g4, g5, g6;
+
+    JTextField total, cgpa;
+    JButton btn;
+
+    public Gradecalc() {
+
+        setTitle("Grade Calculator");
+        setSize(350, 450);
+        setLayout(null);
+
+        
+        m1 = new JTextField();
+        m2 = new JTextField();
+        m3 = new JTextField();
+        m4 = new JTextField();
+        m5 = new JTextField();
+        m6 = new JTextField();
+
+        m1.setBounds(50, 20, 100, 25);
+        m2.setBounds(50, 50, 100, 25);
+        m3.setBounds(50, 80, 100, 25);
+        m4.setBounds(50, 110, 100, 25);
+        m5.setBounds(50, 140, 100, 25);
+        m6.setBounds(50, 170, 100, 25);
+
+        add(m1); add(m2); add(m3);
+        add(m4); add(m5); add(m6);
+
+        
+        g1 = new JTextField();
+        g2 = new JTextField();
+        g3 = new JTextField();
+        g4 = new JTextField();
+        g5 = new JTextField();
+        g6 = new JTextField();
+
+        g1.setBounds(180, 20, 50, 25);
+        g2.setBounds(180, 50, 50, 25);
+        g3.setBounds(180, 80, 50, 25);
+        g4.setBounds(180, 110, 50, 25);
+        g5.setBounds(180, 140, 50, 25);
+        g6.setBounds(180, 170, 50, 25);
+
+      
+
+        add(g1); add(g2); add(g3);
+        add(g4); add(g5); add(g6);
+
+      
+        btn = new JButton("Calculate");
+        total = new JTextField();
+        cgpa = new JTextField();
+        
+        btn.setBounds(50, 210, 180, 30);
+        total.setBounds(50, 250, 180, 25);
+        cgpa.setBounds(50, 280, 180, 25);
+        
+        add(btn);
+        add(total);
+        add(cgpa);
+
+   
+       
+       btn.addActionListener(this);
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
+    }
+
+
+    public String getGrade(int m) {
+        if (m >= 90) return "A+";
+        else if (m >= 80) return "A";
+        else if (m >= 70) return "B";
+        else if (m >= 60) return "C";
+        else if (m >= 50) return "D";
+        else return "F";
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        int a = Integer.parseInt(m1.getText());
+        int b = Integer.parseInt(m2.getText());
+        int c = Integer.parseInt(m3.getText());
+        int d = Integer.parseInt(m4.getText());
+        int f = Integer.parseInt(m5.getText());
+        int g = Integer.parseInt(m6.getText());
+
+        int ttl = a + b + c + d + f + g;
+
+      
+        g1.setText(getGrade(a));
+        g2.setText(getGrade(b));
+        g3.setText(getGrade(c));
+        g4.setText(getGrade(d));
+        g5.setText(getGrade(f));
+        g6.setText(getGrade(g));
+
+     
+        double cgpavalue = (ttl / 600.0) * 4;
+
+        total.setText("Total = " + ttl);
+        cgpa.setText("CGPA = " + String.valueOf( cgpavalue));
+    }
+
+    public static void main(String[] args) {
+        new Gradecalc();
+    }
+}
+
